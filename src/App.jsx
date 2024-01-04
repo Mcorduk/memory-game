@@ -4,6 +4,7 @@ import { fetchData } from "./api";
 import "./assets/App.css";
 import cardback from "./assets/card-back-default.png";
 import Card from "./components/Card";
+import { shuffle } from "./utils";
 
 function App() {
   const [cards, setCards] = useState(
@@ -18,14 +19,6 @@ function App() {
   );
   // scores state variable, keep currentScore and bestScore in the game
   const [scores, setScores] = useState({ currentScore: 0, bestScore: 0 });
-
-  //Function to increment the current score using setScores, this will trigger
-  //a re-render as well as bestScore useEffect
-  const incrementCurrentScore = () =>
-    setScores((prevScores) => ({
-      ...prevScores,
-      currentScore: prevScores.currentScore + 1,
-    }));
 
   // Fetch API
   useEffect(
@@ -54,7 +47,18 @@ function App() {
     updateBestScore();
   }, [scores.currentScore, scores.bestScore]);
 
-  function cardHandleClick() {}
+  //Function to increment the current score using setScores, this will trigger
+  //a re-render as well as bestScore useEffect
+  const incrementCurrentScore = () =>
+    setScores((prevScores) => ({
+      ...prevScores,
+      currentScore: prevScores.currentScore + 1,
+    }));
+
+  //Shuffle cards using shuffle func in utils, pass it as prop to card components
+  function shuffleCards() {
+    setCards((prevCards) => shuffle([...prevCards]));
+  }
 
   return (
     <>
@@ -68,9 +72,7 @@ function App() {
           than once!
         </p>
         <div className="scores">
-          <span onClick={incrementCurrentScore}>
-            Current Score: {scores.currentScore}
-          </span>
+          <span>Current Score: {scores.currentScore}</span>
           <span>Best Score: {scores.bestScore}</span>
         </div>
       </header>
@@ -79,9 +81,9 @@ function App() {
           // FIXME Key usage here is wrong
           <Card
             id={card.id}
-            handleClick={cardHandleClick}
+            handleClick={shuffleCards}
             src={card.image}
-            key={Math.Random}
+            key={Math.random()}
           />
         ))}
       </main>

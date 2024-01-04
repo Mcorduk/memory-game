@@ -1,5 +1,5 @@
 // Base API URl
-const apiBase = "https://api.scryfall.com/cards/";
+const apiBase = "https://api.scryfall.com/cards";
 
 // To get Image need to specify format
 const dataFormat = "/?format=image";
@@ -9,11 +9,11 @@ const dataFormat = "/?format=image";
 // Set: the three to five-letter set code. mid for Midnight Hunt
 // index: index of the artArray variable
 
-const fetchData = async (setArtArray, card, set, index) => {
+const fetchData = async (setArtArray, card, index) => {
   // Effect function
   try {
     // Fetch API to call first cards data
-    const response = await fetch(apiBase + set + card + dataFormat, {
+    const response = await fetch(apiBase + card.set + card.id + dataFormat, {
       mode: "cors",
     });
 
@@ -23,7 +23,13 @@ const fetchData = async (setArtArray, card, set, index) => {
     //updating the array using spread operator
     setArtArray((prevArray) => [
       ...prevArray.slice(0, index), //Copying elements before the index
-      imageUrl, // replace index with imageUrl
+      {
+        name: card.name,
+        set: card.set,
+        id: card.id,
+        image: imageUrl,
+        checked: false,
+      }, // replace index with imageUrl
       ...prevArray.slice(index + 1), // Copying elements after the index
     ]);
   } catch (error) {

@@ -6,10 +6,21 @@ import cardback from "./assets/card-back-default.png";
 import Card from "./components/Card";
 
 function App() {
-  const [artArray, setArtArray] = useState(new Array(10).fill(cardback));
+  const [cards, setCards] = useState(
+    //Fill the Initial
+    new Array(10).fill({
+      name: "",
+      id: "",
+      set: "",
+      image: cardback,
+      checked: false,
+    }),
+  );
   // scores state variable, keep currentScore and bestScore in the game
   const [scores, setScores] = useState({ currentScore: 0, bestScore: 0 });
 
+  //Function to increment the current score using setScores, this will trigger
+  //a re-render as well as bestScore useEffect
   const incrementCurrentScore = () =>
     setScores((prevScores) => ({
       ...prevScores,
@@ -20,9 +31,7 @@ function App() {
   useEffect(
     () => {
       // Call fetchData, pass setArt as argument to be able to use the state func
-      CARDS.map((card, index) =>
-        fetchData(setArtArray, card.id, card.set, index),
-      );
+      CARDS.map((card, index) => fetchData(setCards, card, index));
 
       return () => {
         //Cleanup code
@@ -45,6 +54,8 @@ function App() {
     updateBestScore();
   }, [scores.currentScore, scores.bestScore]);
 
+  function cardHandleClick() {}
+
   return (
     <>
       <header>
@@ -64,9 +75,14 @@ function App() {
         </div>
       </header>
       <main>
-        {artArray.map((art) => (
+        {cards.map((card) => (
           // FIXME Key usage here is wrong
-          <Card src={art} key={Math.random()} />
+          <Card
+            id={card.id}
+            handleClick={cardHandleClick}
+            src={card.image}
+            key={Math.Random}
+          />
         ))}
       </main>
     </>

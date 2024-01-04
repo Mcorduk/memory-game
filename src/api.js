@@ -2,7 +2,7 @@
 const apiBase = "https://api.scryfall.com/cards";
 
 // To get Image need to specify format
-const dataFormat = "/?format=image";
+const dataFormat = "?format=image";
 
 //More on the API: https://scryfall.com/docs/api/cards/collector;
 // setArtArray: setter state variable for image sources
@@ -14,7 +14,7 @@ const fetchData = async (setCards, card, index) => {
   try {
     // Fetch API to call first cards data
     const response = await fetch(
-      apiBase + "/" + card.set + "/" + card.id + "/" + dataFormat,
+      `${apiBase}/${card.set}/${card.id}/${dataFormat}`,
       {
         mode: "cors",
       },

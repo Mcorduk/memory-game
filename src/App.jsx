@@ -60,7 +60,16 @@ function App() {
     setCards((prevCards) => shuffle([...prevCards]));
   }
 
-  function checkCard(id) {}
+  function checkCard(card, index) {
+    setCards((prevArray) => [
+      ...prevArray.slice(0, index), //Copying elements before the index
+      {
+        ...card,
+        checked: true,
+      }, // replace index with imageUrl
+      ...prevArray.slice(index + 1), // Copying elements after the index
+    ]);
+  }
 
   return (
     <>
@@ -79,9 +88,15 @@ function App() {
         </div>
       </header>
       <main>
-        {cards.map((card) => (
+        {cards.map((card, index) => (
           // FIXME Key usage here is wrong
-          <Card shuffleCards={shuffleCards} card={card} key={Math.random()} />
+          <Card
+            shuffleCards={shuffleCards}
+            checkCard={checkCard}
+            card={card}
+            key={Math.random()}
+            index={index}
+          />
         ))}
       </main>
     </>

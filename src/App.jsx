@@ -7,8 +7,14 @@ import Card from "./components/Card";
 
 function App() {
   const [artArray, setArtArray] = useState(new Array(10).fill(cardback));
-  // scores state variable,
+  // scores state variable, keep currentScore and bestScore in the game
   const [scores, setScores] = useState({ currentScore: 0, bestScore: 0 });
+
+  const incrementCurrentScore = () =>
+    setScores((prevScores) => ({
+      ...prevScores,
+      currentScore: prevScores.currentScore + 1,
+    }));
 
   // Fetch API
   useEffect(
@@ -26,6 +32,19 @@ function App() {
     [], // FIXME  For now only on initial load
   );
 
+  //Check and update the best score
+  useEffect(() => {
+    function updateBestScore() {
+      if (scores.currentScore > scores.bestScore) {
+        setScores((prevScores) => ({
+          ...prevScores,
+          bestScore: prevScores.currentScore,
+        }));
+      }
+    }
+    updateBestScore();
+  }, [scores.currentScore, scores.bestScore]);
+
   return (
     <>
       <header>
@@ -38,7 +57,9 @@ function App() {
           than once!
         </p>
         <div className="scores">
-          <span>Current Score: {scores.currentScore}</span>
+          <span onClick={incrementCurrentScore}>
+            Current Score: {scores.currentScore}
+          </span>
           <span>Best Score: {scores.bestScore}</span>
         </div>
       </header>

@@ -57,29 +57,42 @@ function App() {
     }));
   };
 
-  //resets score
   const resetScore = () => {
     setScores((prevScores) => ({
       ...prevScores,
       currentScore: 0,
     }));
+    resetCards();
+  };
+
+  const resetCards = () => {
+    setCards((prevCards) =>
+      prevCards.map((card) => ({
+        ...card,
+        checked: false,
+      })),
+    );
   };
 
   //Shuffle cards using shuffle func in utils, pass it as prop to card components
-  function shuffleCards() {
+  const shuffleCards = () => {
     setCards((prevCards) => shuffle([...prevCards]));
-  }
-  //Takes a card object and it's index in cards array
-  function checkCard(card, index) {
-    setCards((prevArray) => [
-      ...prevArray.slice(0, index), //Copying elements before the index
-      {
-        ...card,
-        checked: true,
-      }, // replace index with imageUrl
-      ...prevArray.slice(index + 1), // Copying elements after the index
-    ]);
-  }
+  };
+  //Takes a card object and it's index in the cards component
+  const checkCard = (card, index) => {
+    if (!card.checked) {
+      setCards((prevArray) => [
+        ...prevArray.slice(0, index), //Copying elements before the index
+        {
+          ...card,
+          checked: true,
+        }, // replace index with imageUrl
+        ...prevArray.slice(index + 1), // Copying elements after the index
+      ]);
+    } else {
+      resetScore();
+    }
+  };
 
   return (
     <>

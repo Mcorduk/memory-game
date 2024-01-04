@@ -13,9 +13,10 @@ export default function Card({
           if (card.checked === true) {
             resetScore();
           } else {
+            checkCard(card, index);
             incrementCurrentScore();
           }
-          checkCard(card, index);
+
           shuffleCards();
         }}
         src={card.image}

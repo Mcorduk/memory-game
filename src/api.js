@@ -9,19 +9,22 @@ const dataFormat = "/?format=image";
 // Set: the three to five-letter set code. mid for Midnight Hunt
 // index: index of the artArray variable
 
-const fetchData = async (setArtArray, card, index) => {
+const fetchData = async (setCards, card, index) => {
   // Effect function
   try {
     // Fetch API to call first cards data
-    const response = await fetch(apiBase + card.set + card.id + dataFormat, {
-      mode: "cors",
-    });
+    const response = await fetch(
+      apiBase + "/" + card.set + "/" + card.id + "/" + dataFormat,
+      {
+        mode: "cors",
+      },
+    );
 
     // Get the image data as a Blob
     const imageBlob = await response.blob();
     const imageUrl = URL.createObjectURL(imageBlob);
     //updating the array using spread operator
-    setArtArray((prevArray) => [
+    setCards((prevArray) => [
       ...prevArray.slice(0, index), //Copying elements before the index
       {
         name: card.name,

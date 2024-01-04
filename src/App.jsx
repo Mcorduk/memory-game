@@ -4,6 +4,7 @@ import { fetchData } from "./api";
 import "./assets/App.css";
 import cardback from "./assets/card-back-default.png";
 import Card from "./components/Card";
+import Header from "./components/Header";
 import { shuffle } from "./utils";
 
 function App() {
@@ -49,17 +50,26 @@ function App() {
 
   //Function to increment the current score using setScores, this will trigger
   //a re-render as well as bestScore useEffect
-  const incrementCurrentScore = () =>
+  const incrementCurrentScore = () => {
     setScores((prevScores) => ({
       ...prevScores,
       currentScore: prevScores.currentScore + 1,
     }));
+  };
+
+  //resets score
+  const resetScore = () => {
+    setScores((prevScores) => ({
+      ...prevScores,
+      currentScore: 0,
+    }));
+  };
 
   //Shuffle cards using shuffle func in utils, pass it as prop to card components
   function shuffleCards() {
     setCards((prevCards) => shuffle([...prevCards]));
   }
-
+  //Takes a card object and it's index in cards array
   function checkCard(card, index) {
     setCards((prevArray) => [
       ...prevArray.slice(0, index), //Copying elements before the index
@@ -73,26 +83,15 @@ function App() {
 
   return (
     <>
-      <header>
-        <div>
-          <h1>The Midnight Hunt</h1>
-          <h2> Memory Game</h2>
-        </div>
-        <p>
-          Get points by clicking on an image but don&apos;t click on any more
-          than once!
-        </p>
-        <div className="scores">
-          <span>Current Score: {scores.currentScore}</span>
-          <span>Best Score: {scores.bestScore}</span>
-        </div>
-      </header>
+      <Header scores={scores} />
       <main>
         {cards.map((card, index) => (
           // FIXME Key usage here is wrong
           <Card
             shuffleCards={shuffleCards}
             checkCard={checkCard}
+            incrementCurrentScore={incrementCurrentScore}
+            resetScore={resetScore}
             card={card}
             key={Math.random()}
             index={index}

@@ -1,42 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CARDS } from "./CARDS";
+import { fetchData } from "./api";
 import "./assets/App.css";
 import cardback from "./assets/card-back-default.png";
 import Card from "./components/Card";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [art, setArt] = useState([cardback]);
-
-  // Base API URl
-  const apiBase = "https://api.scryfall.com/cards";
-  // The three to five-letter set code. mid for Midnight Hunt
-  const set = "/mid/";
-  // To get Image need to specify format
-  const dataFormat = "/?format=image";
+  const [artArray, setArtArray] = useState(new Array(10).fill(cardback));
 
   // Fetch API
   useEffect(
     () => {
-      //More on the API: https://scryfall.com/docs/api/cards/collector
-      const fetchData = async () => {
-        // Effect function
-        try {
-          // Fetch API to call first cards data
-          const response = await fetch(apiBase + set + CARDS[0] + dataFormat, {
-            mode: "cors",
-          });
-          // Get the image data as a Blob
-          const imageBlob = await response.blob();
-          const imageUrl = URL.createObjectURL(imageBlob);
-          setArt(imageUrl);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-
-      // Call fetchData
-      fetchData();
+      // Call fetchData, pass setArt as argument to be able to use the state func
+      CARDS.map((card, index) => fetchData(setArtArray, card, index));
 
       return () => {
         //Cleanup code
@@ -48,8 +24,9 @@ function App() {
 
   return (
     <>
-      {" "}
-      <Card src={art} />
+      {artArray.map((art) => (
+        <Card src={art} key={Math.random()} />
+      ))}
     </>
   );
 }

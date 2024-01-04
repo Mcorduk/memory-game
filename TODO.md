@@ -1,17 +1,17 @@
 # TODO
 
-1 - MTG API
-2 - Use Gruul Werewolves Deck
-Arlinn
-Kessig Naturalist
-Reckless Stormseeker
-Tovolar, Dire Overlord
-Howlpack Piper
-Volatile Arsonist
-Avabruck Caretaker
-Outland Liberator
-Cemetery Prowler
-Werewolf Pack Leader ?
+1 - MTG API✅
+2 - Use Gruul Werewolves Deck✅
+Arlinn✅
+Kessig Naturalist✅
+Reckless Stormseeker✅
+Tovolar, Dire Overlord✅
+Howlpack Piper❌
+Volatile Arsonist❌
+Avabruck Caretaker❌
+Outland Liberator ✅
+Cemetery Prowler ✅
+Brutal Cathar ✅
 
 ### New Branch
 

@@ -12,16 +12,22 @@ header {
 
 }
 
+main {}
+
 .scores {
   display: flex;
   flex-direction: column;
 }
 
-.card {
-  height: 20em;
+button {
+  margin: 10px;
+}
 
+.card {
+  max-height: 20em;
   will-change: filter;
   transition: filter 300ms;
+  margin
 }
 
 

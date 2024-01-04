@@ -7,6 +7,8 @@ import Card from "./components/Card";
 
 function App() {
   const [artArray, setArtArray] = useState(new Array(10).fill(cardback));
+  // scores state variable,
+  const [scores, setScores] = useState({ currentScore: 0, bestScore: 0 });
 
   // Fetch API
   useEffect(
@@ -36,8 +38,8 @@ function App() {
           than once!
         </p>
         <div className="scores">
-          <span>Current Score: 0</span>
-          <span>Best Score: 0</span>
+          <span>Current Score: {scores.currentScore}</span>
+          <span>Best Score: {scores.bestScore}</span>
         </div>
       </header>
       <main>

@@ -1,33 +1,55 @@
-import { useState } from "react";
-import "./App.css";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useRef, useState } from "react";
+import { CARDS } from "./CARDS";
+import "./assets/App.css";
+import cardback from "./assets/card-back-default.png";
+import Card from "./components/Card";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [art, setArt] = useState([cardback]);
+
+  // Base API URl
+  const apiBase = "https://api.scryfall.com/cards";
+  // The three to five-letter set code. mid for Midnight Hunt
+  const set = "/mid/";
+  // To get Image need to specify format
+  const dataFormat = "/?format=image";
+
+  // Fetch API
+  useEffect(
+    () => {
+      //More on the API: https://scryfall.com/docs/api/cards/collector
+      const fetchData = async () => {
+        // Effect function
+        try {
+          // Fetch API to call first cards data
+          const response = await fetch(apiBase + set + CARDS[0] + dataFormat, {
+            mode: "cors",
+          });
+          // Get the image data as a Blob
+          const imageBlob = await response.blob();
+          const imageUrl = URL.createObjectURL(imageBlob);
+          setArt(imageUrl);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+
+      // Call fetchData
+      fetchData();
+
+      return () => {
+        //Cleanup code
+      };
+    },
+    // My Dependency Array
+    [], // FIXME  For now only on initial load
+  );
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {" "}
+      <Card src={art} />
     </>
   );
 }

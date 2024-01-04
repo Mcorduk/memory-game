@@ -1,9 +1,9 @@
-export default function Card({ src, handleClick }) {
+export default function Card({ card, shuffleCards }) {
   return (
-    <button onClick={handleClick}>
+    <button onClick={shuffleCards} id={card.id}>
       <img
-        onClick={handleClick}
-        src={src}
+        onClick={shuffleCards}
+        src={card.image}
         className="card"
         alt="MTG Card Image"
       />

@@ -60,6 +60,8 @@ function App() {
     setCards((prevCards) => shuffle([...prevCards]));
   }
 
+  function checkCard(id) {}
+
   return (
     <>
       <header>
@@ -79,12 +81,7 @@ function App() {
       <main>
         {cards.map((card) => (
           // FIXME Key usage here is wrong
-          <Card
-            id={card.id}
-            handleClick={shuffleCards}
-            src={card.image}
-            key={Math.random()}
-          />
+          <Card shuffleCards={shuffleCards} card={card} key={Math.random()} />
         ))}
       </main>
     </>

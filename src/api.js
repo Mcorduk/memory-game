@@ -1,12 +1,15 @@
 // Base API URl
-const apiBase = "https://api.scryfall.com/cards";
-// The three to five-letter set code. mid for Midnight Hunt
-const set = "/mid/";
+const apiBase = "https://api.scryfall.com/cards/";
+
 // To get Image need to specify format
 const dataFormat = "/?format=image";
 
 //More on the API: https://scryfall.com/docs/api/cards/collector;
-const fetchData = async (setArtArray, card, index) => {
+// setArtArray: setter state variable for image sources
+// Set: the three to five-letter set code. mid for Midnight Hunt
+// index: index of the artArray variable
+
+const fetchData = async (setArtArray, card, set, index) => {
   // Effect function
   try {
     // Fetch API to call first cards data

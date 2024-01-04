@@ -1,17 +1,17 @@
 # TODO
 
-1 - MTG API✅
-2 - Use Gruul Werewolves Deck✅
-Arlinn✅
-Kessig Naturalist✅
-Reckless Stormseeker✅
-Tovolar, Dire Overlord✅
-Howlpack Piper❌
-Volatile Arsonist❌
-Avabruck Caretaker❌
-Outland Liberator ✅
-Cemetery Prowler ✅
-Brutal Cathar ✅
+Scryfall API✅
+Use Gruul Werewolves Deck✅
+1 - Arlinn✅
+2 - Kessig Naturalist✅
+3 - Reckless Stormseeker✅
+4 - Tovolar, Dire Overlord✅
+5 - Howlpack Piper✅
+6 - Volatile Arsonist✅
+7 - Avabruck Caretaker✅
+8 - Outland Liberator ✅
+9 - Cemetery Prowler ✅
+10- Brutal Cathar ✅
 
 ### New Branch
 

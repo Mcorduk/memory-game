@@ -12,7 +12,9 @@ function App() {
   useEffect(
     () => {
       // Call fetchData, pass setArt as argument to be able to use the state func
-      CARDS.map((card, index) => fetchData(setArtArray, card, index));
+      CARDS.map((card, index) =>
+        fetchData(setArtArray, card.id, card.set, index),
+      );
 
       return () => {
         //Cleanup code
@@ -24,9 +26,26 @@ function App() {
 
   return (
     <>
-      {artArray.map((art) => (
-        <Card src={art} key={Math.random()} />
-      ))}
+      <header>
+        <div>
+          <h1>The Midnight Hunt</h1>
+          <h2> Memory Game</h2>
+        </div>
+        <p>
+          Get points by clicking on an image but don&apos;t click on any more
+          than once!
+        </p>
+        <div className="scores">
+          <span>Current Score: 0</span>
+          <span>Best Score: 0</span>
+        </div>
+      </header>
+      <main>
+        {artArray.map((art) => (
+          // FIXME Key usage here is wrong
+          <Card src={art} key={Math.random()} />
+        ))}
+      </main>
     </>
   );
 }

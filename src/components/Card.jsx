@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import wolfOverlay from "../assets/images/werewolf-animation.png";
 export default function Card({
   card,
   shuffleCards,
@@ -20,13 +20,15 @@ export default function Card({
 
   return (
     <button id={card.id} onClick={handleClick}>
-      <div>
-        <img
-          src={isDarkMode ? card.image.back : card.image.front}
-          className="card"
-          alt="MTG Card Image"
-        />
-      </div>
+      <img
+        src={isDarkMode ? card.image.back : card.image.front}
+        className="card"
+        alt="MTG Card Image"
+      />
+      <img
+        className={`wolf-overlay ${!isDarkMode ? "invisible" : ""}`}
+        src={wolfOverlay}
+      ></img>
     </button>
   );
 }

@@ -3,6 +3,8 @@ import { CARDS } from "./CARDS";
 import { fetchData } from "./api";
 import cardback from "./assets/images/card-back-default.png";
 import "./assets/styles/App.css";
+import "./assets/styles/overlayAnim.css";
+
 import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Header from "./components/Header";

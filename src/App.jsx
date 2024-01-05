@@ -9,6 +9,9 @@ import Token from "./components/Token";
 import { shuffle } from "./utils";
 
 function App() {
+  //Set the game version to play, initial "day", toggle to "night"
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   // State to keep card information
   const [cards, setCards] = useState(
     //Fill the Initial
@@ -27,14 +30,14 @@ function App() {
   useEffect(
     () => {
       // Call fetchData, pass setArt as argument to be able to use the state func
-      CARDS.map((card, index) => fetchData(setCards, card, index));
+      CARDS.map((card, index) => fetchData(setCards, card, index, isDarkMode));
 
       return () => {
         //FIXME Cleanup code
       };
     },
     // My Dependency Array
-    [], // FIXME  For now only on initial load
+    [isDarkMode], // FIXME  For now only on initial load
   );
 
   //Check and update the best score
@@ -96,30 +99,36 @@ function App() {
     }
   };
 
-  return (
-    <>
-      <Header scores={scores} />
+  // Pass this to Token, set it to onClick in Token button
+  function toggleDarkMode() {
+    setIsDarkMode(!isDarkMode);
+  }
 
-      <div className="container">
-        <main>
-          {cards.map((card, index) => (
-            // FIXME Key usage here is wrong, too many functions being passed?
-            <Card
-              shuffleCards={shuffleCards}
-              checkCard={checkCard}
-              incrementCurrentScore={incrementCurrentScore}
-              resetScore={resetScore}
-              card={card}
-              key={Math.random()}
-              index={index}
-            />
-          ))}
-        </main>
-        <aside>
-          <Token />
-        </aside>
+  return (
+    <div className={`${isDarkMode ? "dark-mode" : "light-mode"}`}>
+      <div className="app">
+        <Header scores={scores} />
+        <div className="container">
+          <main>
+            {cards.map((card, index) => (
+              // FIXME Key usage here is wrong, too many functions being passed?
+              <Card
+                shuffleCards={shuffleCards}
+                checkCard={checkCard}
+                incrementCurrentScore={incrementCurrentScore}
+                resetScore={resetScore}
+                card={card}
+                key={Math.random()}
+                index={index}
+              />
+            ))}
+          </main>
+          <aside>
+            <Token handleClick={toggleDarkMode} isDarkMode={isDarkMode} />
+          </aside>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

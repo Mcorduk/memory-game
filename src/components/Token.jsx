@@ -3,7 +3,7 @@ import { TOKEN } from "../CARDS";
 import { fetchData } from "../api";
 import cardback from "../assets/images/card-back-default.png";
 
-export default function Token() {
+export default function Token({ handleClick, isDarkMode }) {
   const [token, setToken] = useState({
     name: "",
     id: "",
@@ -17,7 +17,7 @@ export default function Token() {
     () => {
       // API call populates our token's necesarry information
       // Passing TOKEN data directly from CARDS as there is only a single token
-      fetchData(setToken, TOKEN, 0, true);
+      fetchData(setToken, TOKEN, 0, isDarkMode, true);
       return () => {
         // FIXME Cleanup code
       };
@@ -27,7 +27,7 @@ export default function Token() {
   );
 
   return (
-    <button id={token.id}>
+    <button onClick={handleClick} id={token.id}>
       <img src={token.image} className="card token" alt="MTG Card Image" />
     </button>
   );

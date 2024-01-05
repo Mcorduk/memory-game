@@ -2,7 +2,9 @@
 const apiBase = "https://api.scryfall.com/cards";
 
 // To get Image need to specify format
-const dataFormat = "?format=image";
+const dataFormat = "?format=image&version=png";
+
+const darkModeParameter = "&face=back";
 
 //API function
 //More on the API: https://scryfall.com/docs/api/cards/collector;
@@ -10,12 +12,21 @@ const dataFormat = "?format=image";
 // Set: the three to five-letter set code. mid for Midnight Hunt
 // index: index of the artArray variable
 //token (optional): Make true for fetching token data
-const fetchData = async (setterFunction, card, index, token = false) => {
+const fetchData = async (
+  setterFunction,
+  card,
+  index,
+  isDarkMode,
+  token = false,
+) => {
   // Effect function
   try {
     // Fetch API to call first cards data
     const response = await fetch(
-      `${apiBase}/${card.set}/${card.id}/${dataFormat}`,
+      `${apiBase}/${card.set}/${card.id}/${dataFormat}${
+        // if Is Dark Mode, add extra parameter to get night version of the card
+        isDarkMode ? darkModeParameter : ""
+      }`,
       {
         mode: "cors",
       },

@@ -1,12 +1,13 @@
-#root {
-  max-width: 1640px;
+.app {
+  min-width: 100vw;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
 /* Styles for dark mode */
-body.dark-mode {
+.dark-mode {
   background-color: #1a1a1a;
   color: #ffffff;
 }
@@ -43,6 +44,7 @@ button {
   margin: 10px;
   padding: 0;
   border: 0;
+  border-radius: 15px;
 }
 
 .card {

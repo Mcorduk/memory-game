@@ -16,6 +16,7 @@ export default function Token() {
   useEffect(
     () => {
       // API call populates our token's necesarry information
+      // Passing TOKEN data directly from CARDS as there is only a single token
       fetchData(setToken, TOKEN, 0, true);
       return () => {
         // FIXME Cleanup code
@@ -27,7 +28,7 @@ export default function Token() {
 
   return (
     <button id={token.id}>
-      <img src={token.image} className="card" alt="MTG Card Image" />
+      <img src={token.image} className="card token" alt="MTG Card Image" />
     </button>
   );
 }

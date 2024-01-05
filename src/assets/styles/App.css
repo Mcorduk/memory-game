@@ -5,28 +5,55 @@
   text-align: center;
 }
 
+/* Styles for dark mode */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Add more styles for specific elements in dark mode */
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 1.6em;
 
 }
-
 
 .scores {
   display: flex;
   flex-direction: column;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+}
+
+aside {
+  position: sticky;
+  left: 0;
+  top: 0;
+  align-self: self-start;
+
+}
+
 button {
   margin: 10px;
+  padding: 0;
+  border: 0;
 }
 
 .card {
-  max-height: 20em;
+  max-height: 21em;
   will-change: filter;
   transition: filter 300ms;
-  margin
+}
+
+.token {
+  max-height: 320px;
+  max-width: 230px;
 }
 
 

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import cardback from "./assets/images/card-back-default.png";
+import { TOKEN } from "../CARDS";
+import { fetchData } from "../api";
+import cardback from "../assets/images/card-back-default.png";
 
 export default function Token() {
   const [token, setToken] = useState({
@@ -7,39 +9,25 @@ export default function Token() {
     id: "",
     set: "",
     image: cardback,
-    toggled: false,
+    checked: false,
   });
 
   // Fetch API
   useEffect(
     () => {
-      // Call fetchData, pass setArt as argument to be able to use the state func
-      CARDS.map((card, index) => fetchData(setCards, card, index));
-
+      // API call populates our token's necesarry information
+      fetchData(setToken, TOKEN, 0, true);
       return () => {
-        //Cleanup code
+        // FIXME Cleanup code
       };
     },
     // My Dependency Array
-    [], // FIXME  For now only on initial load
+    [], // FIXME  token change triggers re-fetch, necessary or not?
   );
-  return (
-    <button onClick={shuffleCards} id={card.id}>
-      <img
-        onClick={() => {
-          if (card.checked === true) {
-            resetScore();
-          } else {
-            checkCard(card, index);
-            incrementCurrentScore();
-          }
 
-          shuffleCards();
-        }}
-        src={card.image}
-        className="card"
-        alt="MTG Card Image"
-      />
+  return (
+    <button id={token.id}>
+      <img src={token.image} className="card" alt="MTG Card Image" />
     </button>
   );
 }

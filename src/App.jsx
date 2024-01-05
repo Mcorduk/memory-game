@@ -5,9 +5,10 @@ import cardback from "./assets/images/card-back-default.png";
 import "./assets/styles/App.css";
 import Card from "./components/Card";
 import Header from "./components/Header";
+import Token from "./components/Token";
 import { shuffle } from "./utils";
-
 function App() {
+  // State to keep card information
   const [cards, setCards] = useState(
     //Fill the Initial
     new Array(10).fill({
@@ -28,7 +29,7 @@ function App() {
       CARDS.map((card, index) => fetchData(setCards, card, index));
 
       return () => {
-        //Cleanup code
+        //FIXME Cleanup code
       };
     },
     // My Dependency Array
@@ -97,20 +98,26 @@ function App() {
   return (
     <>
       <Header scores={scores} />
-      <main>
-        {cards.map((card, index) => (
-          // FIXME Key usage here is wrong
-          <Card
-            shuffleCards={shuffleCards}
-            checkCard={checkCard}
-            incrementCurrentScore={incrementCurrentScore}
-            resetScore={resetScore}
-            card={card}
-            key={Math.random()}
-            index={index}
-          />
-        ))}
-      </main>
+
+      <div className="container">
+        <main>
+          {cards.map((card, index) => (
+            // FIXME Key usage here is wrong
+            <Card
+              shuffleCards={shuffleCards}
+              checkCard={checkCard}
+              incrementCurrentScore={incrementCurrentScore}
+              resetScore={resetScore}
+              card={card}
+              key={Math.random()}
+              index={index}
+            />
+          ))}
+        </main>
+        <aside>
+          <Token />
+        </aside>
+      </div>
     </>
   );
 }

@@ -15,6 +15,6 @@ const CARDS = [
   { id: "7", set: "mid", name: "Brutal Cathar" },
 ];
 
-const TOKEN = { id: "19", set: "tmid", name: "Night" };
+const TOKEN = { id: "19", set: "tmid", name: "Day and Night Token" };
 
 export { CARDS, TOKEN };

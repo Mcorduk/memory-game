@@ -19,7 +19,7 @@ export default function Card({
 
           shuffleCards();
         }}
-        src={card.image}
+        src={card.image.front}
         className="card"
         alt="MTG Card Image"
       />

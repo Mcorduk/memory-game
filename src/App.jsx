@@ -19,7 +19,7 @@ function App() {
       name: "",
       id: "",
       set: "",
-      image: cardback,
+      image: { front: cardback, back: cardback },
       checked: false,
     }),
   );

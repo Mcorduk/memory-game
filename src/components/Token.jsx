@@ -8,7 +8,7 @@ export default function Token({ handleClick, isDarkMode }) {
     name: "",
     id: "",
     set: "",
-    image: cardback,
+    image: { front: cardback, back: cardback },
     checked: false,
   });
 
@@ -17,7 +17,7 @@ export default function Token({ handleClick, isDarkMode }) {
     () => {
       // API call populates our token's necesarry information
       // Passing TOKEN data directly from CARDS as there is only a single token
-      fetchData(setToken, TOKEN, 0, isDarkMode, true);
+      fetchData(setToken, TOKEN, 0, true);
       return () => {
         // FIXME Cleanup code
       };
@@ -28,7 +28,11 @@ export default function Token({ handleClick, isDarkMode }) {
 
   return (
     <button onClick={handleClick} id={token.id}>
-      <img src={token.image} className="card token" alt="MTG Card Image" />
+      <img
+        src={token.image.front}
+        className="card token"
+        alt="MTG Card Image"
+      />
     </button>
   );
 }

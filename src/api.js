@@ -12,21 +12,13 @@ const darkModeParameter = "&face=back";
 // Set: the three to five-letter set code. mid for Midnight Hunt
 // index: index of the artArray variable
 //token (optional): Make true for fetching token data
-const fetchData = async (
-  setterFunction,
-  card,
-  index,
-  isDarkMode,
-  token = false,
-) => {
+const fetchData = async (setterFunction, card, index, token = false) => {
   // Effect function
   try {
     // Fetch API to call first cards data
     const response = await fetch(
-      `${apiBase}/${card.set}/${card.id}/${dataFormat}${
-        // if Is Dark Mode, add extra parameter to get night version of the card
-        isDarkMode ? darkModeParameter : ""
-      }`,
+      `${apiBase}/${card.set}/${card.id}/${dataFormat}`,
+
       {
         mode: "cors",
       },
@@ -34,7 +26,7 @@ const fetchData = async (
 
     // Get the image data as a Blob
     const imageBlob = await response.blob();
-    const imageUrl = URL.createObjectURL(imageBlob);
+    const frontImageUrl = URL.createObjectURL(imageBlob);
     //Set a new array for non token cards
     if (token === false) {
       //updating the set array using spread operator
@@ -44,7 +36,7 @@ const fetchData = async (
           name: card.name,
           set: card.set,
           id: card.id,
-          image: imageUrl,
+          image: { front: frontImageUrl, back: "" },
           checked: false,
         }, // replace index with imageUrl
         ...prevArray.slice(index + 1), // Copying elements after the index
@@ -53,7 +45,7 @@ const fetchData = async (
     } else {
       setterFunction((prevToken) => ({
         ...prevToken,
-        image: imageUrl,
+        image: { front: frontImageUrl, back: "" },
       }));
     }
   } catch (error) {

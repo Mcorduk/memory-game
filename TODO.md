@@ -10,5 +10,7 @@
 # FIXME
 
 - Fix Token image and fetch logic
+- Token doesn't change to night
+- Fetching data on click is inefficient
 
 # QOL

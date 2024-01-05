@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { CARDS } from "./CARDS";
 import { fetchData } from "./api";
-import "./assets/App.css";
-import cardback from "./assets/card-back-default.png";
+import cardback from "./assets/images/card-back-default.png";
+import "./assets/styles/App.css";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import { shuffle } from "./utils";

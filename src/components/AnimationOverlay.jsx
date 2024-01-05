@@ -1,13 +1,21 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import dayOverlayImage from "../assets/images/day-animation.png";
 import nightOverlayImage from "../assets/images/night-animation.png";
+import "../assets/styles/overlayAnim.css"; // Import the CSS file
 
 const OverlayImage = ({ isDarkMode }) => {
-  return isDarkMode ? (
-    <div className="overlay-image">
-      <img src={dayOverlayImage} alt="Overlay Image" />
+  const [overlayImage, setOverlayImage] = useState("");
+
+  useEffect(() => {
+    // Update the overlay image when isDarkMode changes
+    setOverlayImage(isDarkMode ? nightOverlayImage : dayOverlayImage);
+  }, [isDarkMode]);
+
+  return (
+    <div className="overlay-image-container">
+      <img src={overlayImage} alt="Overlay Image" />
     </div>
-  ) : null;
+  );
 };
 
 export default OverlayImage;

@@ -1,11 +1,8 @@
-import "./assets/styles/overlayAnim.css";
-
 import { useEffect, useState } from "react";
 import { CARDS } from "./CARDS";
 import { fetchData } from "./api";
 import cardback from "./assets/images/card-back-default.png";
 import "./assets/styles/App.css";
-import OverlayImage from "./components/AnimationOverlay";
 import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -111,7 +108,6 @@ function App() {
   return (
     <div className={`${isDarkMode ? "dark-mode" : "light-mode"}`}>
       <div className="app">
-        <OverlayImage isDarkMode={isDarkMode} />
         <Header scores={scores} />
         <div className="container">
           <main>

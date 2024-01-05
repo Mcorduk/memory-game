@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import wolfOverlay from "../assets/images/werewolf-animation.png";
+import "../assets/styles/flipAnimation.css";
 export default function Card({
   card,
   shuffleCards,

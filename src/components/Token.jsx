@@ -38,18 +38,21 @@ export default function Token({ handleClick, isDarkMode }) {
   );
 
   return (
-    <button
-      onClick={() => {
-        handleClick();
-        playAudio();
-      }}
-      id={token.id}
-    >
-      <img
-        src={isDarkMode ? token.image.back : token.image.front}
-        className="card token"
-        alt="MTG Card Image"
-      />
-    </button>
+    <>
+      <p>Toggle Themes</p>
+      <button
+        onClick={() => {
+          handleClick();
+          playAudio();
+        }}
+        id={token.id}
+      >
+        <img
+          src={isDarkMode ? token.image.back : token.image.front}
+          className="card token"
+          alt="MTG Card Image"
+        />
+      </button>
+    </>
   );
 }

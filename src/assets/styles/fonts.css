@@ -1,0 +1,17 @@
+/* Beleren Bold */
+@font-face {
+  font-family: 'Beleren-Bold';
+  src: url('../fonts/Beleren2016-Bold.woff') format('woff');
+}
+
+/* Beleren Regular */
+@font-face {
+  font-family: 'Beleren-Regular';
+  src: url('../fonts/Beleren2016SmallCaps-Bold.woff') format('woff');
+}
+
+/* Beleren Italic */
+@font-face {
+  font-family: 'Beleren-Italic';
+  src: url('../fonts/Beleren2016SmallCaps-BoldItalic.woff') format('woff');
+}

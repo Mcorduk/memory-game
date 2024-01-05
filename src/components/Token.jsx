@@ -4,6 +4,8 @@ import { fetchData } from "../api";
 import dayAudio from "../assets/audio/day-audio.mp3";
 import nightAudio from "../assets/audio/night-audio.mp3";
 import cardback from "../assets/images/card-back-default.png";
+import nightOverlay from "../assets/images/night-animation.png";
+import "../assets/styles/flipAnimation.css";
 
 export default function Token({ handleClick, isDarkMode }) {
   const [token, setToken] = useState({
@@ -52,6 +54,10 @@ export default function Token({ handleClick, isDarkMode }) {
           className="card token"
           alt="MTG Card Image"
         />
+        <img
+          className={`night-overlay ${!isDarkMode ? "invisible" : ""}`}
+          src={nightOverlay}
+        ></img>
       </button>
     </>
   );

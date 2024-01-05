@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
 import { CARDS } from "./CARDS";
 import { fetchData } from "./api";
-import "./assets/App.css";
-import cardback from "./assets/card-back-default.png";
+import cardback from "./assets/images/card-back-default.png";
+import "./assets/styles/App.css";
+import "./assets/styles/overlayAnim.css";
+
 import Card from "./components/Card";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Token from "./components/Token";
 import { shuffle } from "./utils";
 
 function App() {
+  //Set the game version to play, initial "day", toggle to "night"
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // State to keep card information
   const [cards, setCards] = useState(
     //Fill the Initial
     new Array(10).fill({
       name: "",
       id: "",
       set: "",
-      image: cardback,
+      image: { front: cardback, back: cardback },
       checked: false,
     }),
   );
@@ -28,7 +36,7 @@ function App() {
       CARDS.map((card, index) => fetchData(setCards, card, index));
 
       return () => {
-        //Cleanup code
+        //FIXME Cleanup code
       };
     },
     // My Dependency Array
@@ -94,24 +102,38 @@ function App() {
     }
   };
 
+  // Pass this to Token, set it to onClick in Token button
+  function toggleDarkMode() {
+    setIsDarkMode(!isDarkMode);
+  }
+
   return (
-    <>
-      <Header scores={scores} />
-      <main>
-        {cards.map((card, index) => (
-          // FIXME Key usage here is wrong
-          <Card
-            shuffleCards={shuffleCards}
-            checkCard={checkCard}
-            incrementCurrentScore={incrementCurrentScore}
-            resetScore={resetScore}
-            card={card}
-            key={Math.random()}
-            index={index}
-          />
-        ))}
-      </main>
-    </>
+    <div className={`${isDarkMode ? "dark-mode" : "light-mode"}`}>
+      <div className="app">
+        <Header scores={scores} />
+        <div className="container">
+          <main>
+            {cards.map((card, index) => (
+              // FIXME Key usage here is wrong, too many functions being passed?
+              <Card
+                shuffleCards={shuffleCards}
+                checkCard={checkCard}
+                incrementCurrentScore={incrementCurrentScore}
+                resetScore={resetScore}
+                card={card}
+                key={Math.random()}
+                index={index}
+                isDarkMode={isDarkMode}
+              />
+            ))}
+          </main>
+          <aside>
+            <Token handleClick={toggleDarkMode} isDarkMode={isDarkMode} />
+          </aside>
+        </div>
+        <Footer isDarkMode={isDarkMode} />
+      </div>
+    </div>
   );
 }
 

@@ -1,18 +1,5 @@
 # TODO
 
-Scryfall API✅
-Use Gruul Werewolves Deck✅
-1 - Arlinn✅
-2 - Kessig Naturalist✅
-3 - Reckless Stormseeker✅
-4 - Tovolar, Dire Overlord✅
-5 - Howlpack Piper✅
-6 - Volatile Arsonist✅
-7 - Avabruck Caretaker✅
-8 - Outland Liberator ✅
-9 - Cemetery Prowler ✅
-10- Brutal Cathar ✅
-
 ### New Branch
 
 - Day and Night Card on the side toggles
@@ -21,5 +8,9 @@ Use Gruul Werewolves Deck✅
   card is the button that toggles day and night
 
 # FIXME
+
+- Fix Token image and fetch logic
+- Token doesn't change to night
+- Fetching data on click is inefficient
 
 # QOL

@@ -3,7 +3,7 @@
 // Then entering integer after set letters, here it is 211 https://scryfall.com/card/mid/211
 // Use below as examples
 const CARDS = [
-  { id: "211", set: "mid", name: "Arlinn, The Packs Hope" },
+  { id: "211", set: "mid", name: "Arlinn, The Pack's Hope" },
   { id: "231", set: "mid", name: "Kessig Naturalist" },
   { id: "157", set: "mid", name: "Reckless Stormseeker" },
   { id: "246", set: "mid", name: "Tovolar, Dire Overlord" },
@@ -15,4 +15,6 @@ const CARDS = [
   { id: "7", set: "mid", name: "Brutal Cathar" },
 ];
 
-export { CARDS };
+const TOKEN = { id: "19", set: "tmid", name: "Day and Night Token" };
+
+export { CARDS, TOKEN };

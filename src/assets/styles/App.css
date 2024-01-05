@@ -1,0 +1,97 @@
+@import url('fonts.css');
+
+#root {
+  font-family: 'Beleren-Regular', serif;
+}
+
+.app {
+  max-width: 1640px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Styles for dark mode */
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dark-mode button {
+  background-color: #1a1a1a;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.6em;
+
+}
+
+header .how-to-play,
+.best-score {
+  font-family: 'Beleren-Italic', serif;
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+aside {
+  position: sticky;
+  left: 0;
+  top: 0;
+  align-self: self-start;
+  border: 1px black solid;
+
+}
+
+button {
+  border-radius: 15px;
+  padding: 0;
+  border: 0;
+  margin: 10px;
+  background-color: #ffffff;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.06);
+}
+
+.card {
+  max-height: 21em;
+  will-change: filter;
+  transition: filter 300ms;
+
+}
+
+.token {
+  min-height: 320px;
+  min-width: 230px;
+}
+
+
+.card:hover {
+  filter: drop-shadow(0 0 12px rgba(100, 108, 255, 0.5));
+}
+
+.card.react:hover {
+  filter: drop-shadow(0 0 12px rgba(97, 218, 251, 0.5));
+}
+
+/* Footer Component styles */
+.quote {
+  padding-top: 2rem;
+  font-family: 'Beleren-Italic', serif;
+}

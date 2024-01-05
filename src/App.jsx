@@ -30,14 +30,14 @@ function App() {
   useEffect(
     () => {
       // Call fetchData, pass setArt as argument to be able to use the state func
-      CARDS.map((card, index) => fetchData(setCards, card, index, isDarkMode));
+      CARDS.map((card, index) => fetchData(setCards, card, index));
 
       return () => {
         //FIXME Cleanup code
       };
     },
     // My Dependency Array
-    [isDarkMode], // FIXME  For now only on initial load
+    [], // FIXME  For now only on initial load
   );
 
   //Check and update the best score
@@ -120,6 +120,7 @@ function App() {
                 card={card}
                 key={Math.random()}
                 index={index}
+                isDarkMode={isDarkMode}
               />
             ))}
           </main>

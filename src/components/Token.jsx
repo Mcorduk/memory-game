@@ -12,7 +12,7 @@ export default function Token({ handleClick, isDarkMode }) {
     checked: false,
   });
 
-  // Fetch API
+  // Fetch token information
   useEffect(
     () => {
       // API call populates our token's necesarry information
@@ -29,7 +29,7 @@ export default function Token({ handleClick, isDarkMode }) {
   return (
     <button onClick={handleClick} id={token.id}>
       <img
-        src={token.image.front}
+        src={isDarkMode ? token.image.back : token.image.front}
         className="card token"
         alt="MTG Card Image"
       />

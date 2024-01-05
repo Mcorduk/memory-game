@@ -5,6 +5,7 @@ export default function Card({
   incrementCurrentScore,
   resetScore,
   index,
+  isDarkMode,
 }) {
   return (
     <button onClick={shuffleCards} id={card.id}>
@@ -19,7 +20,7 @@ export default function Card({
 
           shuffleCards();
         }}
-        src={card.image.front}
+        src={isDarkMode ? card.image.back : card.image.front}
         className="card"
         alt="MTG Card Image"
       />

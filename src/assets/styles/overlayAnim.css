@@ -1,0 +1,19 @@
+.overlay-image {
+  animation: myAnim 3s ease 0s 1 alternate both;
+  z-index: 1;
+}
+
+@keyframes myAnim {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(250px);
+  }
+
+  33.33%,
+  66.66% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -18,6 +18,10 @@
   color: #ffffff;
 }
 
+.dark-mode button {
+  background-color: #1a1a1a;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -56,12 +60,14 @@ button {
   padding: 0;
   border: 0;
   margin: 10px;
+  background-color: #ffffff;
 }
 
 .card {
   max-height: 21em;
   will-change: filter;
   transition: filter 300ms;
+
 }
 
 .token {

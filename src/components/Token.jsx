@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { TOKEN } from "../CARDS";
 import { fetchData } from "../api";
+import dayAudio from "../assets/audio/day-audio.mp3";
+import nightAudio from "../assets/audio/night-audio.mp3";
 import cardback from "../assets/images/card-back-default.png";
 
 export default function Token({ handleClick, isDarkMode }) {
@@ -12,8 +14,14 @@ export default function Token({ handleClick, isDarkMode }) {
     checked: false,
   });
 
-  //Used for animating the card with css on isDarkMode, flipping the card
-  const [flipped, setFlipped] = useState(false);
+  function playAudio() {
+    if (isDarkMode) {
+      new Audio(dayAudio).play();
+    }
+    if (!isDarkMode) {
+      new Audio(nightAudio).play();
+    }
+  }
 
   // Fetch token information
   useEffect(
@@ -30,7 +38,13 @@ export default function Token({ handleClick, isDarkMode }) {
   );
 
   return (
-    <button onClick={handleClick} id={token.id}>
+    <button
+      onClick={() => {
+        handleClick();
+        playAudio();
+      }}
+      id={token.id}
+    >
       <img
         src={isDarkMode ? token.image.back : token.image.front}
         className="card token"

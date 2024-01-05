@@ -24,8 +24,9 @@ const fetchData = async (setterFunction, card, index, token = false) => {
     // Get the image data as a Blob
     const imageBlob = await response.blob();
     const imageUrl = URL.createObjectURL(imageBlob);
-    //updating the array using spread operator
+    //Set a new array for non token cards
     if (token === false) {
+      //updating the set array using spread operator
       setterFunction((prevArray) => [
         ...prevArray.slice(0, index), //Copying elements before the index
         {
@@ -37,6 +38,7 @@ const fetchData = async (setterFunction, card, index, token = false) => {
         }, // replace index with imageUrl
         ...prevArray.slice(index + 1), // Copying elements after the index
       ]);
+      //Set a new token object for Token
     } else {
       setterFunction((prevToken) => ({
         ...prevToken,

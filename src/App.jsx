@@ -7,6 +7,7 @@ import Card from "./components/Card";
 import Header from "./components/Header";
 import Token from "./components/Token";
 import { shuffle } from "./utils";
+
 function App() {
   // State to keep card information
   const [cards, setCards] = useState(
@@ -102,7 +103,7 @@ function App() {
       <div className="container">
         <main>
           {cards.map((card, index) => (
-            // FIXME Key usage here is wrong
+            // FIXME Key usage here is wrong, too many functions being passed?
             <Card
               shuffleCards={shuffleCards}
               checkCard={checkCard}

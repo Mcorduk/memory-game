@@ -47,14 +47,15 @@ aside {
   left: 0;
   top: 0;
   align-self: self-start;
+  border: 1px black solid;
 
 }
 
 button {
-  margin: 10px;
+  border-radius: 15px;
   padding: 0;
   border: 0;
-  border-radius: 15px;
+  margin: 10px;
 }
 
 .card {
@@ -75,4 +76,10 @@ button {
 
 .card.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* Footer Component styles */
+.quote {
+  padding-top: 2rem;
+  font-family: 'Beleren-Italic', serif;
 }

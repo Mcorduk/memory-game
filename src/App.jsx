@@ -4,6 +4,7 @@ import { fetchData } from "./api";
 import cardback from "./assets/images/card-back-default.png";
 import "./assets/styles/App.css";
 import Card from "./components/Card";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Token from "./components/Token";
 import { shuffle } from "./utils";
@@ -11,6 +12,9 @@ import { shuffle } from "./utils";
 function App() {
   //Set the game version to play, initial "day", toggle to "night"
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  //Used for animating the card with css on isDarkMode, flipping the card
+  const [flipped, setFlipped] = useState(false);
 
   // State to keep card information
   const [cards, setCards] = useState(
@@ -128,6 +132,7 @@ function App() {
             <Token handleClick={toggleDarkMode} isDarkMode={isDarkMode} />
           </aside>
         </div>
+        <Footer isDarkMode={isDarkMode} />
       </div>
     </div>
   );

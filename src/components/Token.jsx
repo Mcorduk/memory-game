@@ -12,6 +12,9 @@ export default function Token({ handleClick, isDarkMode }) {
     checked: false,
   });
 
+  //Used for animating the card with css on isDarkMode, flipping the card
+  const [flipped, setFlipped] = useState(false);
+
   // Fetch token information
   useEffect(
     () => {

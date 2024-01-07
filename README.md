@@ -1,8 +1,11 @@
-# React + Vite
+# Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project Live Preview: https://mcorduk-memory-game.netlify.app/
 
-Currently, two official plugins are available:
+https://github.com/Mcorduk/memory-game/assets/104722188/fd105fb8-dd19-462c-927c-f3cd0dfa2b2d
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![image](https://github.com/Mcorduk/memory-game/assets/104722188/034c28b2-0c02-4065-9d51-83de356cce91)
+
+![Screenshot from 2024-01-06 17-18-54](https://github.com/Mcorduk/memory-game/assets/104722188/79cee61d-073a-4057-9bce-f004d3a4a43b)
+
+Made with React and <3 

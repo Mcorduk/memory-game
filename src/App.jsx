@@ -30,18 +30,14 @@ function App() {
   const [scores, setScores] = useState({ currentScore: 0, bestScore: 0 });
 
   // Fetch API
-  useEffect(
-    () => {
-      // Call fetchData, pass setArt as argument to be able to use the state func
-      CARDS.map((card, index) => fetchData(setCards, card, index));
+  useEffect(() => {
+    // Call fetchData, pass setArt as argument to be able to use the state func
+    CARDS.map((card, index) => fetchData(setCards, card, index));
 
-      return () => {
-        //FIXME Cleanup code
-      };
-    },
-    // My Dependency Array
-    [], // FIXME  For now only on initial load
-  );
+    return () => {
+      //FIXME Cleanup code
+    };
+  }, []);
 
   //Check and update the best score
   useEffect(() => {

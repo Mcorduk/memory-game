@@ -16,6 +16,7 @@ export default function Token({ handleClick, isDarkMode }) {
     checked: false,
   });
 
+  // Plays audio on isDarkMode toggles
   function playAudio() {
     if (isDarkMode) {
       new Audio(dayAudio).play();
@@ -36,7 +37,7 @@ export default function Token({ handleClick, isDarkMode }) {
       };
     },
     // My Dependency Array
-    [], // FIXME  token change triggers re-fetch, necessary or not?
+    [],
   );
 
   return (
@@ -52,7 +53,8 @@ export default function Token({ handleClick, isDarkMode }) {
         <img
           src={isDarkMode ? token.image.back : token.image.front}
           className="card token"
-          alt="MTG Card Image"
+          // Take it from the data otherwise defaults to ""
+          alt={`${TOKEN.name} Image`}
         />
         <img
           className={`night-overlay ${!isDarkMode ? "invisible" : ""}`}

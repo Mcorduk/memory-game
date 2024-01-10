@@ -24,6 +24,7 @@ function App() {
       set: "",
       image: { front: cardback, back: cardback },
       checked: false,
+      key: null,
     }),
   );
   // scores state variable, keep currentScore and bestScore in the game
@@ -110,14 +111,13 @@ function App() {
         <div className="container">
           <main>
             {cards.map((card, index) => (
-              // FIXME Key usage here is wrong, too many functions being passed?
               <Card
                 shuffleCards={shuffleCards}
                 checkCard={checkCard}
                 incrementCurrentScore={incrementCurrentScore}
                 resetScore={resetScore}
                 card={card}
-                key={Math.random()}
+                key={card.key}
                 index={index}
                 isDarkMode={isDarkMode}
               />

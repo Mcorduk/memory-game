@@ -2,16 +2,16 @@
 const apiBase = "https://api.scryfall.com/cards";
 
 // To get Image need to specify format
-const imageFormatParameter = "?format=image&version=png";
-// To get the flip side image url of the card, AKA "back" of the card on dark mode
+const formatParameter = "?format=image&version=png";
+
 const darkModeParameter = "&face=back";
 
-const setCardsInfo = (
+const setCardsImage = (
   setterFunction,
   card,
   index,
   frontImageUrl,
-  backImageUrl,
+  backImageUrl = "",
 ) => {
   //updating the set array using spread operator
   setterFunction((prevArray) => [
@@ -22,13 +22,12 @@ const setCardsInfo = (
       id: card.id,
       image: { front: frontImageUrl, back: backImageUrl },
       checked: false,
-      key: Math.random(), //Give a unique, unchangin key to the card only once
     }, // replace index with imageUrl
     ...prevArray.slice(index + 1), // Copying elements after the index
   ]);
 };
 
-const setTokenImage = (setterFunction, frontImageUrl, backImageUrl) => {
+const setTokenImage = (setterFunction, frontImageUrl, backImageUrl = "") => {
   setterFunction((prevToken) => ({
     ...prevToken,
     image: { front: frontImageUrl, back: backImageUrl },
@@ -46,7 +45,7 @@ const fetchData = async (setterFunction, card, index, token = false) => {
   try {
     // Fetch front image
     const frontResponse = await fetch(
-      `${apiBase}/${card.set}/${card.id}/${imageFormatParameter}`,
+      `${apiBase}/${card.set}/${card.id}/${formatParameter}`,
       {
         mode: "cors",
       },
@@ -54,7 +53,7 @@ const fetchData = async (setterFunction, card, index, token = false) => {
 
     // Fetch back image
     const backResponse = await fetch(
-      `${apiBase}/${card.set}/${card.id}/${imageFormatParameter}${darkModeParameter}`,
+      `${apiBase}/${card.set}/${card.id}/${formatParameter}${darkModeParameter}`,
       {
         mode: "cors",
       },
@@ -69,7 +68,7 @@ const fetchData = async (setterFunction, card, index, token = false) => {
     const backImageUrl = URL.createObjectURL(backImageBlob);
     //Set a new array for non token cards
     if (token === false) {
-      setCardsInfo(setterFunction, card, index, frontImageUrl, backImageUrl);
+      setCardsImage(setterFunction, card, index, frontImageUrl, backImageUrl);
     } else {
       //Set a new token object for Token
       setTokenImage(setterFunction, frontImageUrl, backImageUrl);

@@ -77,10 +77,8 @@ button:hover {
 }
 
 .token {
-  min-height: 160px;
-  min-width: 115px;
-  max-height: 320px;
-  max-width: 230px;
+  min-height: 320px;
+  min-width: 230px;
 }
 
 
